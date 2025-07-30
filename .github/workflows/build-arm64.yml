@@ -6,7 +6,7 @@ on:
     branches: [main]
     paths:
       - Dockerfile
-      - .github/workflows/build-metabase-arm64.yml
+      - .github/workflows/build-arm64.yml
 
 jobs:
   build-arm64:
@@ -35,8 +35,7 @@ jobs:
           platforms: linux/arm64
           file: ./Dockerfile
           push: true
-          no-cache: true
           tags: ghcr.io/${{ github.repository_owner }}/metabase-arm64:latest
 
-      - name: Output image digest
+      - name: Image digest
         run: echo "Built image digest is ${{ steps.buildx.outputs.digest }}"
